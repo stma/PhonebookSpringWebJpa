@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ContactBook - új kapcsolat</title>
+    <link rel="stylesheet" href="/form.css">
+</head>
+<body>
+    <h1>Új kapcsolat felvétele:</h1>
+
+    <form action="/new" method="post">
+        <label for="contactName">Neve:</label>
+        <input id="contactName" name="name" type="text">
+
+        <label for="contactEmail">Email:</label>
+        <input id="contactEmail" name="email" type="text">
+
+        <label for="contactTel">Telefon:</label>
+        <input id="contactTel" name="tel" type="text">
+
+        <input id="saveButton" type="submit" value="Mentés">
+    </form>
+
+    <a href="/home" data-th-href="@{/home}">
+        <button>Vissza</button>
+    </a>
+
+</body>
+</html>

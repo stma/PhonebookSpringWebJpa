@@ -1,0 +1,16 @@
+form {
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+}
+
+#saveButton {
+    background-color: burlywood;
+    max-width: 100px;
+    align-self: center;
+}
+
+form > input {
+    margin: 10px;
+}

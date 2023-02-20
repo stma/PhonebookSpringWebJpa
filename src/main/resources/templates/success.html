@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PhoneBook - sikeres felvetel</title>
+</head>
+<body>
+  <h1>Sikeresen felvetted:</h1>
+
+  <div class="contact">
+    <p data-th-text="${contact.name()}"></p>
+    <p data-th-text="${contact.email()}"></p>
+    <p data-th-text="${contact.tel()}"></p>
+  </div>
+
+  <a href="/home">
+    Home
+  </a>
+  <a href="/all-contacts">
+    Kapcsolatok
+  </a>
+  <a href="/new">
+    Új kapcsolat
+  </a>
+</body>
+</html>

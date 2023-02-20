@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PhoneBook - mind</title>
+</head>
+<body>
+    <h1>Összes kapcsolat</h1>
+
+    <p data-th-if="${#lists.isEmpty(contacts)}">Neked még nincs felvett kapcsolatod...</p>
+    <ol data-th-unless="${#lists.isEmpty(contacts)}">
+<!--        <li th:each="contact : ${contacts}">-->
+        <li data-th-each="contact : ${contacts}">
+            <p data-th-text="${contact.name()}"></p>
+            <p data-th-text="${contact.email()}"></p>
+            <p data-th-text="${contact.tel()}"></p>
+        </li>
+    </ol>
+    <a href="/home" data-th-href="@{/home}">
+        <button>Vissza</button>
+    </a>
+    <script>
+        setInterval(function(){location.reload();}, 5000);
+    </script>
+</body>
+</html>
