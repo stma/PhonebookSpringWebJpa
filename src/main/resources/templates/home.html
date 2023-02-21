@@ -7,6 +7,9 @@
 <body>
     <h1>PhoneBook app</h1>
 
+    <div data-sec-authorize="isAuthenticated()">
+        Hello <span data-sec-authentication="name"></span>!
+    </div>
     <a data-th-href="@{/all-contacts}">
         <p>Összes kapocsolat megjelenítése</p>
     </a>

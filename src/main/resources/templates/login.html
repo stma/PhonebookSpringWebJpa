@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Phonebook - login</title>
+    <style>
+        form {
+            display: flex;
+            flex-direction: column;
+            max-width: 200px;
+        }
+    </style>
+</head>
+<body>
+<form data-th-action="@{/login}" method="post">
+    <div data-th-if="${param.error}" class="alert alert-error">
+        Nem megfelelő jelszó és/vagy felhasználónév.
+    </div>
+    <div data-th-if="${param.logout}" class="alert alert-success">
+        Kilépet
+    </div>
+    <input name="username" type="text">
+    <input name="password" type="password">
+    <input type="submit" value="Mehet">
+</form>
+</body>
+</html>
