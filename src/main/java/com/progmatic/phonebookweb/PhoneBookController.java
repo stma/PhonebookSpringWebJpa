@@ -2,7 +2,7 @@ package com.progmatic.phonebookweb;
 
 import com.progmatic.phonebookweb.model.Contact;
 import com.progmatic.phonebookweb.model.ContactResource;
-import jakarta.validation.Valid;
+//import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -34,6 +34,7 @@ public class PhoneBookController {
     @PostMapping(path = "/new")
     public String saveContact(
         @Validated
+//            @Valid
         @ModelAttribute("newContact")
         ContactForm newContact,
         BindingResult bindingResult,
