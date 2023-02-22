@@ -11,7 +11,14 @@ public class ContactResource {
     private List<Contact> contacts = new LinkedList<>();
 
     public Contact getContact(String name) {
-        return null;
+        Contact res = null;
+        for (Contact c: contacts) {
+            if (c.name().equalsIgnoreCase(name)) {
+                res = c;
+                break;
+            }
+        }
+        return res;
     }
 
     public List<Contact> getContacts() {

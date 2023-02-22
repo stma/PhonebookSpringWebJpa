@@ -9,6 +9,7 @@
 
     <p data-th-if="${#lists.isEmpty(contacts)}">Neked még nincs felvett kapcsolatod...</p>
     <ol data-th-unless="${#lists.isEmpty(contacts)}">
+<!--    <ol>-->
 <!--        <li th:each="contact : ${contacts}">-->
         <li data-th-each="contact : ${contacts}">
             <p data-th-text="${contact.name()}"></p>
@@ -20,7 +21,7 @@
         <button>Vissza</button>
     </a>
     <script>
-        setInterval(function(){location.reload();}, 5000);
+        // setInterval(function(){location.reload();}, 5000);
     </script>
 </body>
 </html>
