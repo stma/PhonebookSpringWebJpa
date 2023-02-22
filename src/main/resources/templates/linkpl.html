@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--    <a href="/alma">Alma</a>-->
+<!--/* This code will be removed at Thymeleaf parsing time! */-->
+
+<!--/*-->
+<div>
+    you can see me only before Thymeleaf processes me!
+</div>
+<!--*/-->
+
+    <a data-th-href="@{/korte}">Korte</a>
+    <a data-th-href="@{/szilva}" href="/szilva">Korte</a>
+
+<!--/*/
+  <div th:text="${name}">
+
+  </div>
+/*/-->
+<!--/*--> <div>Kiskacsa</div> <!--*/-->
+
+</body>
+</html>
