@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ContactBook - új kapcsolat</title>
+  <link rel="stylesheet" href="/form.css">
+</head>
+<body>
+<h1>Új kapcsolat felvétele:</h1>
+
+<form action="/registration" data-th-action="@{/registration}" data-th-object="${user}" method="post">
+  <div data-th-if="${#fields.hasErrors()}" class="alert alert-danger">
+    <ul>
+      <li data-th-each="err : ${#fields.errors()}" data-th-text="${err}">Hiba üzenet</li>
+    </ul>
+  </div>
+
+  <label for="contactName">Felhasználó név:</label>
+  <input id="contactName" name="username" data-th-field="*{username}" type="text">
+
+  <label for="contactEmail">Jelszó:</label>
+  <input id="contactEmail" name="password" data-th-field="*{password}" type="password">
+
+  <input id="saveButton" type="submit" value="Mentés">
+</form>
+
+<a href="/home" data-th-href="@{/home}">
+  <button>Vissza</button>
+</a>
+
+</body>
+</html>

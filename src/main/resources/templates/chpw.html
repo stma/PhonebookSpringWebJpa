@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Phonebook - change pw</title>
+    <style>
+        form {
+            display: flex;
+            flex-direction: column;
+            max-width: 200px;
+        }
+    </style>
+</head>
+<body>
+<form data-th-action="@{/change-password}" method="post">
+    <div data-th-if="${param.error}" class="alert alert-error" data-th-text="${param.error}"></div>
+    <input name="old_password" type="password">
+    <input name="new_password" type="password">
+    <input name="new_password_again" type="password">
+
+    <input type="submit" value="Mehet">
+</form>
+</body>
+</html>

@@ -31,6 +31,11 @@ public class PhoneBookController {
         return "add-contact";
     }
 
+    @GetMapping(path = "/admin")
+    public String adminPage() {
+        return "admin";
+    }
+
     @PostMapping(path = "/new")
     public String saveContact(
         @Validated
