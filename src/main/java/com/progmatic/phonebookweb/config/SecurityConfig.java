@@ -3,6 +3,7 @@ package com.progmatic.phonebookweb.config;
 // https://docs.spring.io/spring-security/site/docs/4.1.3.RELEASE/guides/html5/form-javaconfig.html
 
 
+import com.progmatic.phonebookweb.auth.AppUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Bean;
@@ -10,6 +11,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.SecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -37,35 +39,34 @@ import javax.sql.DataSource;
 @EnableWebSecurity
 public class SecurityConfig {
 
+    @Autowired
+    AppUserService userDetailsService;
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
 //    @Bean
-//    public PasswordEncoder passwordEncoder() {
-//        return new BCryptPasswordEncoder();
+//    public UserDetailsManager userDetailsService() throws Exception {
+//        UserDetails user = User.builder()
+//                .username("stma")
+//                .password("{bcrypt}$2a$10$sZQPP8yz8TaL8WKFS5SdbO3asyWtcwKzOAfMQ4wj3VHIlz9MkOxkW")
+//                .roles("USER", "ADMIN")
+//                .build();
+////        return new InMemoryUserDetailsManager(user);
+//        JdbcUserDetailsManager users = new JdbcUserDetailsManager(dataSource());
+//        users.createUser(user);
+//        return users;
 //    }
 
+//    @Bean
+//    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
+//        return config.getAuthenticationManager();
+//    }
     @Bean
-    DataSource dataSource() {
-        return new EmbeddedDatabaseBuilder()
-                .setType(EmbeddedDatabaseType.H2)
-                .addScript(JdbcDaoImpl.DEFAULT_USER_SCHEMA_DDL_LOCATION)
-                .build();
-    }
-
-    @Bean
-    public UserDetailsManager userDetailsService() throws Exception {
-        UserDetails user = User.builder()
-                .username("stma")
-                .password("{bcrypt}$2a$10$sZQPP8yz8TaL8WKFS5SdbO3asyWtcwKzOAfMQ4wj3VHIlz9MkOxkW")
-                .roles("USER", "ADMIN")
-                .build();
-//        return new InMemoryUserDetailsManager(user);
-        JdbcUserDetailsManager users = new JdbcUserDetailsManager(dataSource());
-        users.createUser(user);
-        return users;
-    }
-
-    @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
-        return config.getAuthenticationManager();
+    public AuthenticationManager authenticationManager(AuthenticationManagerBuilder auth) throws Exception {
+        return auth.authenticationProvider(daoAuthenticationProvider()).build();
     }
 
     @Bean
@@ -85,6 +86,14 @@ public class SecurityConfig {
                         .permitAll()
                     .and();
         return http.build();
+    }
+
+    @Bean
+    public DaoAuthenticationProvider daoAuthenticationProvider() {
+        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
+        provider.setPasswordEncoder(passwordEncoder());
+        provider.setUserDetailsService(userDetailsService);
+        return provider;
     }
 
 }

@@ -49,7 +49,9 @@ public class AuthController {
     @Transactional
     @PostMapping(path = "/registration")
     public String regPagePost(
-            @ModelAttribute("user") @Validated RegForm user,
+            @ModelAttribute("user")
+            @Validated
+            RegForm user,
             BindingResult binds
     ) {
         if (binds.hasErrors()) {
@@ -84,7 +86,6 @@ public class AuthController {
         }
 
         UserDetails user = userDetailsManager.loadUserByUsername(principal.getName());
-
 
         try {
             userDetailsManager.updateUser(
